@@ -8,25 +8,25 @@ import { PokeService } from './app.service'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'prueba-front-ntt';
+  title:string = 'prueba-front-ntt';
   pokemons: string[] = [];
   pokemons2: string[] = [];
   pokemonsAux = [];
   search = new FormControl();
-  inicioPokem = 0;
-  finPokem = 4;
+  inicioPokem : number = 0;
+  finPokem : number = 4;
   pokemonSelected = '';
   constructor(private _pokemonService: PokeService){
-
   }
-   async ngOnInit(): Promise<any> {
-    this.pokemons2 = this._pokemonService.getPokemons(this.inicioPokem,this.finPokem);
-    setTimeout(() => {
-    if(this.pokemons2){
-      this.pokemons = this.pokemons2.slice(this.inicioPokem,this.finPokem);
-    }
-    }, 100);
-    this.pokemonsAux = this.pokemons2;
+
+  ngOnInit(): any {
+  this.pokemons2 = this._pokemonService.getPokemons();
+  setTimeout(() => {
+  if(this.pokemons2){
+    this.pokemons = this.pokemons2.slice(this.inicioPokem,this.finPokem);
+  }
+  }, 100);
+  this.pokemonsAux = this.pokemons2;
   }
   clickBack(){
     this.inicioPokem = this.inicioPokem - 4;
@@ -40,28 +40,22 @@ export class AppComponent implements OnInit{
     this.pokemons = this.pokemons2.slice(this.inicioPokem,this.finPokem)
 
   }
-  searchValue(key){
+  searchValue(){
     this.inicioPokem = 0;
     this.finPokem = 4;
     if(this.search.value && this.search.value.length > 0){
-      let pokeAux
+      let pokeAux;
       pokeAux = this.pokemonsAux.filter(pok => pok.name.toLowerCase().includes(this.search.value.toLowerCase()))
       this.pokemons = pokeAux.slice(this.inicioPokem,this.finPokem);
     }else{
       this.pokemons = this.pokemons2.slice(this.inicioPokem,this.finPokem);
 
     }
-    
-    console.log(this.search.value,'searcgh')
-    console.log(key)
   }
   viewPokemon(pokemon){
     let array = []
-    console.log(pokemon.moves)
-    pokemon.moves.map(key => array.push(key.move?.name || key))
+    pokemon.moves.map(key => array.push(key.move?.name || key));
     pokemon.moves = array;
-    
-    this.pokemonSelected = pokemon
-    console.log(pokemon,'pokemon')
+    this.pokemonSelected = pokemon;
   }
 }

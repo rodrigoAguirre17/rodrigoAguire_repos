@@ -1,12 +1,12 @@
 <h1 class="title">Listado de Pokemon</h1>
 <div class="container-1">
-  <span class="icon"><i class="fa fa-search" aria-hidden="true" ></i></span>
-  <input type="search" id="search" placeholder="Buscar" [formControl]="search" (keyup)="searchValue($event)">
+  <span class="icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+  <input type="search" id="search" placeholder="Buscar" [formControl]="search" (keyup)="searchValue()">
 </div>
 <br>
 
 <div class="container">
-  <div class="row" >
+  <div class="row">
     <div class="column" *ngFor="let pokemon of pokemons ; let i = index">
       <div class="card" (click)="viewPokemon(pokemon)">
         <div class="imagencard">
@@ -19,7 +19,8 @@
   </div>
   <div *ngIf="pokemonSelected" class="card-select">
     <div class="imagencard">
-      <img mat-card-image width="80" height="100" [src]="[pokemonSelected?.sprites?.front_default]" alt="Photo of a pokemons">
+      <img mat-card-image width="80" height="100" [src]="[pokemonSelected?.sprites?.front_default]"
+        alt="Photo of a pokemons">
     </div>
     <p># {{pokemonSelected.id}}</p>
     <h3>{{pokemonSelected.name}}</h3>
@@ -48,13 +49,14 @@
           <p>{{pokemonSelected.moves}}, </p>
         </div>
       </div>
-      
+
     </div>
   </div>
 </div>
 
 
 <div class="buttons">
-  <button id="button" class="button-back"  (click)="clickBack()" [disabled]="inicioPokem == 0" > < Atras</button><br>
-  <button mat-raised-button class="button-next" (click)="clickNext()" [disabled]="finPokem == pokemons2.length">Siguiente ></button>
+  <button id="button" class="button-back" (click)="clickBack()" [disabled]="inicioPokem == 0">< Atras</button><br>
+      <button mat-raised-button class="button-next" (click)="clickNext()"
+        [disabled]="finPokem == pokemons2.length">Siguiente ></button>
 </div>

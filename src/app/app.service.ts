@@ -16,8 +16,7 @@ export class PokeService {
     getPokemonsId(id){
         return this._httpClient.get<any>(`${this.baseUrl}/${id}`);
     }
-    getPokemons(number1,number2){
-        console.log(number1,number2)
+    getPokemons(){
         let pokemons = []
         for(let ind = 1; ind <= 150; ind++){
             this.getPokemonsId(ind).subscribe(res =>{
