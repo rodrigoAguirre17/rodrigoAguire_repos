@@ -58,7 +58,7 @@ export class AppComponent implements OnInit{
   viewPokemon(pokemon){
     let array = []
     console.log(pokemon.moves)
-    pokemon.moves.map(key => array.push(key?.move?.name))
+    pokemon.moves.map(key => array.push(key.move?.name || key))
     pokemon.moves = array;
     
     this.pokemonSelected = pokemon
