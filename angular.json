@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "prueba-front-ntt"
+    }
+  },
+  "defaultProject": "prueba-front-ntt",
+  "cli": {
+    "analytics": false
+  }
 }
